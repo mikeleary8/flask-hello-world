@@ -1,0 +1,55 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+  <div class="card">
+    <div class="card-datatable table-responsive">
+      <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 p-5">
+        
+        <table class="datatables-basic table nowrap table-striped" id="DataTables_Table_0" role="grid" style="width: 1307px;">
+          <thead>
+            <tr>
+              <th>id_original</th>
+              <th>username_original</th>
+              <th>id</th>
+              <th>username</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in data.users %}
+            <tr>
+              <td>{{ username }}</td>
+              <td>{{ username }}</td>
+              <td>{{ item['strong_id__'] }}</td>
+              <td>{{ item['username'] }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  {% if data.next_max_id %}
+    <a class="btn btn-default" href="/scraping/{{username}}?nmi={{data.next_max_id}}">Next max id</a>
+  {% endif%}
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+<script type="text/javascript">
+  $(document).ready( function () {
+      $('.datatables-basic').DataTable({
+        scrollX: true,
+        fixedColumns:   {
+            left: 1,
+        },
+        dom: 'Bfrtip',
+        buttons: [
+            'csv', 'copy'
+        ]
+      });
+
+  });
+</script>
+
+{% endblock %}

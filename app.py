@@ -1,25 +1,31 @@
-from flask import Flask, request, json
+from flask import Flask, request, json, render_template
 import requests
 
 app = Flask(__name__)
 
-@app.route('/')
-def hello_world():
+@app.route('/scraping/<id>', methods=["POST","GET"])
+def scraping(id):
 
-    
-    url = "https://instagram-scraper-2022.p.rapidapi.com/ig/following/"
+    nmi = request.args.get('nmi',  default = " ", type = str)
 
-    querystring = {"id_user":"44617448873"}
+    if nmi != " ":
+        querystring = {"id_user":""+id+"", "next_max_id":""+nmi+""}
+    else:
+        querystring = {"id_user":""+id+""}
 
     headers = {
         "X-RapidAPI-Key": "02d25f21ecmsh6fd6238a435cabap1430c9jsna65bf3f1404e",
         "X-RapidAPI-Host": "instagram-scraper-2022.p.rapidapi.com"
     }
 
+    url = "https://instagram-scraper-2022.p.rapidapi.com/ig/following/"
+
+    
+
     response = requests.request("GET", url, headers=headers, params=querystring)
 
-    jsonData = response.json()
+    data = response.json()
 
-    print(jsonData[next_max_id])
+    #return data
 
-    return jsonData
+    return render_template('scraping.html', username=f'{id}', data=data)
