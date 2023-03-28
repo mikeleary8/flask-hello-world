@@ -20,4 +20,6 @@ def hello_world():
 
     jsonData = response.json()
 
+    print(jsonData[next_max_id])
+
     return jsonData
