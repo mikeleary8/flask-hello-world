@@ -18,7 +18,7 @@ def scraping(id):
         "X-RapidAPI-Host": "instagram-scraper-2022.p.rapidapi.com"
     }
 
-    url = "https://instagram-scraper-2022.p.rapidapi.com/ig/following/"
+    url = "https://instagram-scraper-2022.p.rapidapi.com/ig/followers/"
 
     
 
