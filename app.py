@@ -1,7 +1,13 @@
 from flask import Flask, request, json, render_template
 import requests
+from instagrapi import Client
 
 app = Flask(__name__)
+
+cl = Client()
+
+cl.login("ernestigler","OkOx9GHJKL*7*")
+
 
 @app.route('/scraping/<id>', methods=["POST","GET"])
 def scraping(id):
@@ -14,7 +20,7 @@ def scraping(id):
         querystring = {"id_user":""+id+""}
 
     headers = {
-        "X-RapidAPI-Key": "02d25f21ecmsh6fd6238a435cabap1430c9jsna65bf3f1404e",
+        "X-RapidAPI-Key": "f2923eedf0msh2990d552a2003d3p12f51bjsn663c397ea72b",
         "X-RapidAPI-Host": "instagram-scraper-2022.p.rapidapi.com"
     }
 
@@ -29,3 +35,11 @@ def scraping(id):
     #return data
 
     return render_template('scraping.html', username=f'{id}', data=data)
+
+@app.route('/ig')
+def ig():
+    user_id = cl.user_id_from_username(ernestigler)
+
+    print(user_id)
+
+    return {}
