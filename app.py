@@ -1,13 +1,7 @@
 from flask import Flask, request, json, render_template
 import requests
-from instagrapi import Client
 
 app = Flask(__name__)
-
-cl = Client()
-
-cl.login("ernestigler","OkOx9GHJKL*7*")
-
 
 @app.route('/scraping/<id>', methods=["POST","GET"])
 def scraping(id):
