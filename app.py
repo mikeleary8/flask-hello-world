@@ -9,6 +9,4 @@ def retreat_webhook(token):
 
     body = request.json
 
-    print(body)
-
     return {}, 200
