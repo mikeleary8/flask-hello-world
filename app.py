@@ -11,4 +11,4 @@ def retreat_webhook(token):
 
     print(body)
 
-    return body, 200
+    return {}, 200
